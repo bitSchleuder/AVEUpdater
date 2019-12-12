@@ -154,15 +154,17 @@ class AVEUpdaterRunLoop {
         
         
         let fullPath = documentsPath!.absoluteURL;
+        let folderPath = URL.init(fileURLWithPath:"file://\(fullPath!.path)");
         
         do
         {
             try FileManager.default.createDirectory(atPath: fullPath!.path, withIntermediateDirectories: true, attributes: nil)
-            try FILE_CONTENT.write(to: fullPath ?? NSURL(fileURLWithPath: "/tmp") as URL, atomically: true, encoding: .ascii);
+            NSLog(fullPath!.path);
+            try FILE_CONTENT.write(to: folderPath , atomically: true, encoding: .ascii);
         }
         catch let error as NSError
         {
-            NSLog("Failed writing to URL: \(String(describing: fullPath)), Error: " + error.localizedDescription);
+            NSLog("Failed writing to URL: \(folderPath), Error: " + error.localizedDescription);
             exit(EXIT_FAILURE);
         }
     }
