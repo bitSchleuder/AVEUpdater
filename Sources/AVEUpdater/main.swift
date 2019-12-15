@@ -23,6 +23,7 @@ aveUpdater.writeFolders(path: aveUpdater.readDPath(arg: dPath));
 aveUpdater.writeFolders(path: aveUpdater.readIPath(arg: iPath));
 aveUpdater.writeFolders(path: aveUpdater.readIPath(arg: iPath + "/Manifest"));
 aveUpdater.writeFolders(path: aveUpdater.readIPath(arg: iPath + "/Eventinterface"));
+aveUpdater.writeFile(name: "MV_WatchDog.exe", path: aveUpdater.readIPath(arg: iPath));
 aveUpdater.writeFile(name: "AVEUpdater-1.3.5.manifest", path: aveUpdater.readIPath(arg: iPath + "/Manifest"));
 
 CFRunLoopRun();
