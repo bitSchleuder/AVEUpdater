@@ -80,11 +80,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DOWNLOAD_DIR=&quot;/Users/schebefn/Library/Application Support/AVP/Download&quot;"
+            argument = "-DOWNLOAD_DIR=&apos;../Library/Application Support/AVP/Download&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-INSTALL_DIR=&quot;/Users/schebefn/Library/Application Support/AVP/AVE&quot;"
+            argument = "-INSTALL_DIR=&apos;../Library/Application Support/AVP/AVE&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -78,24 +78,24 @@ class AVEUpdaterRunLoop {
     }
     
     @objc public func readDPath(arg: String) -> String {
-        return self.readValue(regex: "=[ a-zA-Z0-9/]+", mode: arg);
+        return self.readValue(regex: "=[ a-zA-Z0-9/.]+", mode: arg);
     }
     
     @objc public func readIPath(arg: String) -> String {
-        return self.readValue(regex: "=[ a-zA-Z0-9/]+", mode: arg);
+        return self.readValue(regex: "=[ a-zA-Z0-9/.]+", mode: arg);
     }
     
     @objc private func readValue(regex: String, mode: String) -> String {
         if(mode.count < 1) {return ""}
         do {
-            let regex = try NSRegularExpression(pattern: regex);
-            let results = regex.matches(in: mode,
-                                        range: NSRange(mode.startIndex..., in: mode))
+            let _regex = try NSRegularExpression(pattern: regex);
+            let results = _regex.matches(in: mode,
+                                        range: NSRange(mode.startIndex..., in: mode));
             
-            return String(String(mode[Range(results[0].range, in: mode)!]).dropFirst())
+            return String(String(mode[Range(results[0].range, in: mode)!]).dropFirst());
         } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
-            return ""
+            print("invalid regex: \(error.localizedDescription)");
+            return "";
         }
     }
     
@@ -121,15 +121,16 @@ class AVEUpdaterRunLoop {
     }
     
     @objc public func writeFolders(path: String) {
-        let pathes = path.split(separator: "/");
-        var documentsPath = NSURL(string:"/");
+        // let pathes = path.split(separator: "/");
+        // var documentsPath = NSURL(string:"/Users/schebefn/Downloads");
         
-        for p in pathes {
-            documentsPath = documentsPath!.appendingPathComponent(String(p)) as NSURL?;
-        };
+        // for p in pathes {
+        //    documentsPath = documentsPath!.appendingPathComponent(String(p)) as NSURL?;
+        // };
+
         
-        
-        let fullPath = documentsPath!.absoluteURL;
+        // let fullPath = documentsPath!.absoluteURL;
+        let fullPath = NSURL(fileURLWithPath: path).absoluteURL;
         
         do
         {
@@ -144,16 +145,16 @@ class AVEUpdaterRunLoop {
     
     @objc public func writeFile(name: String, path: String) {
         
-        let pathes = path.split(separator: "/");
-        var documentsPath = NSURL(string:"/");
+        // let pathes = path.split(separator: "/");
+        // var documentsPath = NSURL(string:"/");
         
-        for p in pathes {
-            documentsPath = documentsPath!.appendingPathComponent(String(p)) as NSURL?;
-        };
+        // for p in pathes {
+        //    documentsPath = documentsPath!.appendingPathComponent(String(p)) as NSURL?;
+        // };
         
         
-        let fullPath = documentsPath!.absoluteURL;
-        
+        // let fullPath = documentsPath!.absoluteURL;
+        let fullPath = NSURL(fileURLWithPath: path).absoluteURL;
         do
         {
             try FileManager.default.createDirectory(atPath: fullPath!.path, withIntermediateDirectories: true, attributes: nil)
